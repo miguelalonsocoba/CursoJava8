@@ -31,6 +31,31 @@ public class Lambda {
 		MiNombre miNombreLambda = () -> "Miguel Lambda";
 		
 		System.out.println(miNombreLambda.miNombre());
+		
+		Sumar sumar = new Sumar() {
+			
+			@Override
+			public int suma(int a, int b) {
+				return a + b;
+			}
+		};
+		
+		System.out.println(String.format("Resultado de la suma, con funcion anonima: %s", sumar.suma(10, 10)));
+		
+		Sumar sumar2 = (a,b) -> a+b;
+		System.out.println(String.format("Resultado de la suma, con lambda: %s", sumar2.suma(12, 8)));
+		
+		Sumar sumar3 = (a, b) -> {
+			a = b * b;
+			a = a + b;
+			System.out.println(String.format("Valor actual de la suma3: %s", a));
+			return a;
+		};
+		
+		System.out.println(String.format("Resultado de la suma3: %s", sumar3.suma(2, 2)));
+		
 		}
+	
+	
 
 }
