@@ -1,5 +1,8 @@
 package referenciasametodos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class ReferenciaMetodo.
  * @author Miguel
@@ -33,6 +36,29 @@ public class ReferenciaMetodo {
 		
 		Trabajo trabajoMetodoReferencia1 = user::referenciaAMetodoParticular;
 		trabajoMetodoReferencia1.accion();
+		
+		////////// Referencia a un método de instancia de un objeto arbitrario de un tipo particular.
+		TrabajoString trabajoStringLambda = (palabra) -> {
+			System.out.println(String.format("La palabra es: %s", palabra));
+			return palabra.toUpperCase();
+		};
+		System.out.println(String.format("La palabra convertida en mayuscula: %s", trabajoStringLambda.accion("Hello")));
+		
+		TrabajoString trabajoStringReferenciaMetodo = String::toUpperCase;
+		System.out.println(String.format("Palabra en mayuscula: %s", trabajoStringReferenciaMetodo.accion("bye")));
+		
+		//--------------- Otro ejemplo.
+		/// Lambda.
+		List<User> users = new ArrayList<>();
+		users.add(new User("Pedro"));
+		users.add(new User("Alberto"));
+		users.add(new User("Mariana"));
+		users.add(new User("Lorenzo"));
+		users.forEach(nombre -> nombre.mostrarNombre());
+		System.out.println("---------------------------");
+		
+		/// Referencia a método.
+		users.forEach(User::mostrarNombre);
 	}
 
 }
