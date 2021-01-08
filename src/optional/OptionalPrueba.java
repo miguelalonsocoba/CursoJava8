@@ -12,7 +12,8 @@ public class OptionalPrueba {
 
 	public static void main(String[] args) {
 		// probarOptional(null);
-		orElseOptional(null);
+		// orElseOptional(null);
+		orElseThrow(null);
 	}
 
 	/**
@@ -33,14 +34,23 @@ public class OptionalPrueba {
 	}
 
 	public static void orElseOptional(String nombre) {
-		Optional<String> optional = Optional.ofNullable(nombre);// Acepta un valor nulo en la variable, para despues
+ 		Optional<String> optional = Optional.ofNullable(nombre);// Acepta un valor nulo en la variable, para despues
 																// asignarle un por defecto.
 		// Optional<String> optional2 = Optional.of(nombre);
 
-		String nombreOfNullable = optional.orElse("Vacio");
+		String nombreOfNullable = optional.orElse("Vacio");// Se asigna un valor por defecto.
 		// String nombreOf = optional2.orElse("Vacio");
 		System.out.println(nombreOfNullable);
 		// System.out.println(nombreOf);
+	}
+	
+	public static void orElseThrow(String nombre) {
+		Optional<String> optional = Optional.ofNullable(nombre);
+		optional.orElseThrow(NullPointerException::new);
+		
+		String nombre1 = optional.get();
+		
+		System.out.println(String.format("El nombre es: %s", nombre1));
 	}
 
 }
