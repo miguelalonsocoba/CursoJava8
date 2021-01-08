@@ -13,7 +13,8 @@ public class OptionalPrueba {
 	public static void main(String[] args) {
 		// probarOptional(null);
 		// orElseOptional(null);
-		orElseThrow(null);
+		//orElseThrow(null);
+		isPresent(null);
 	}
 
 	/**
@@ -51,6 +52,11 @@ public class OptionalPrueba {
 		String nombre1 = optional.get();
 		
 		System.out.println(String.format("El nombre es: %s", nombre1));
+	}
+	
+	public static void isPresent(String nombre) {
+		Optional<String> optional = Optional.ofNullable(nombre);
+		System.out.println(optional.isPresent());
 	}
 
 }
