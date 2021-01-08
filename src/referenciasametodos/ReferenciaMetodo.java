@@ -59,6 +59,29 @@ public class ReferenciaMetodo {
 		
 		/// Referencia a método.
 		users.forEach(User::mostrarNombre);
+		
+		///////////////// Referencia a un Constructor.
+		
+		//Forma de Clase anonima.
+		IUser user2 = new IUser() {
+			
+			@Override
+			public User crear(String nombre) {
+				return new User(nombre);
+			}
+		};
+		User user3 = user2.crear("Anacleta");
+		user3.mostrarNombre();
+		
+		// Forma con Lambda.
+		IUser user4 = (nombre) -> new User(nombre);
+		User user5 = user4.crear("Ponciano");
+		user5.mostrarNombre();
+		
+		// Forma Referencia a un Constructor.
+		IUser user6 = User::new;
+		User user7 = user6.crear("Manzanero");
+		user7.mostrarNombre();
 	}
 
 }

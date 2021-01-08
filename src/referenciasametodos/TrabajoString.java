@@ -5,6 +5,7 @@ package referenciasametodos;
  * @author Miguel
  *
  */
+@FunctionalInterface
 public interface TrabajoString {
 	
 	/**
