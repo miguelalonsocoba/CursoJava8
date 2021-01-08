@@ -5,7 +5,7 @@ package primerejemplodelambda;
  * @author Miguel
  *
  */
-public class Lambda {
+public class Lambda implements PorDefecto {
 
 	/**
 	 * Main method
@@ -54,7 +54,16 @@ public class Lambda {
 		
 		System.out.println(String.format("Resultado de la suma3: %s", sumar3.suma(2, 2)));
 		
+		Lambda lambda = new Lambda();
+		System.out.println(lambda.nombrePorDefecto("Miguel"));
+		
 		}
+
+	@Override
+	public void mostrarNombre(String nombre) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
