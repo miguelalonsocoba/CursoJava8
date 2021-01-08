@@ -25,6 +25,14 @@ public class ReferenciaMetodo {
 		
 		Trabajo trabajoMetodoReferencia = User::referenciaAMetodoEstatico;
 		trabajoMetodoReferencia.accion();
+		
+		///////////Referencia a un método de instancia de un objeto en particular.
+		User user = new User("Miguel");
+		Trabajo trabajoLambda1 = () -> user.referenciaAMetodoParticular();
+		trabajoLambda1.accion();
+		
+		Trabajo trabajoMetodoReferencia1 = user::referenciaAMetodoParticular;
+		trabajoMetodoReferencia1.accion();
 	}
 
 }
