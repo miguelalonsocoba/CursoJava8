@@ -1,6 +1,7 @@
 package stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,6 +54,19 @@ public class StreamPrueba {
 		setUpUser();
 		User user = users.stream().filter((u) -> u.getNombre().equals("Pacheco")).findFirst().orElse(null);
 		System.out.println(user.getId() + " " + user.getNombre());
+
+		// FlatMap.
+		System.out.println("------------FlatNap--------------");
+		List<List<String>> nombreVariasListas = new ArrayList<List<String>>(
+				Arrays.asList(
+						new ArrayList<String>(Arrays.asList("Alberto", "Maria", "Pedro")),
+						new ArrayList<String>(Arrays.asList("Monica", "Pablo"))));
+		
+		List<String> nombreUnicaLista = nombreVariasListas.stream()
+				.flatMap((lis) -> lis.stream())
+				.collect(Collectors.toList());
+		nombreUnicaLista.stream().forEach((nombre) -> System.out.println(String.format("Nombre: %s", nombre)));
+		
 
 		stream.close();
 	}
