@@ -29,13 +29,23 @@ public class StreamPrueba {
 		Stream<List<User>> stream = Stream.of(users); // Se crea un Stream.
 		users.stream(); // Otra forma de crear un Stream.
 		
+		// ForEach.
 		users.stream().forEach((user) -> user.setNombre(user.getNombre() + " Apellido"));
 		
 		imprimirLista();
 		
+		// Map y Collectors.toList.
 		List<String> listaStrings = users.stream().map((usuario) -> usuario.getNombre()).collect(Collectors.toList());
 		listaStrings.stream().forEach((nombre) -> System.out.println(String.format("Nombre: %s", nombre)));
 				
+		// Filter.
+		System.out.println("------------Filter--------------");
+		setUpUser();
+		List<User> userFilter = users.stream()
+				.filter((usuario) -> usuario.getNombre() != "Mario Moreno")
+				.filter((usuario) -> usuario.getId() < 3)
+				.collect(Collectors.toList());
+		userFilter.stream().forEach((user) -> System.out.println(String.format("Nombre filtrado: %s", user.getId() + " " + user.getNombre())));
 		
 		stream.close();
 	}
