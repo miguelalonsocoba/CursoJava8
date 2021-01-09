@@ -2,6 +2,7 @@ package stream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -31,6 +32,10 @@ public class StreamPrueba {
 		users.stream().forEach((user) -> user.setNombre(user.getNombre() + " Apellido"));
 		
 		imprimirLista();
+		
+		List<String> listaStrings = users.stream().map((usuario) -> usuario.getNombre()).collect(Collectors.toList());
+		listaStrings.stream().forEach((nombre) -> System.out.println(String.format("Nombre: %s", nombre)));
+				
 		
 		stream.close();
 	}
