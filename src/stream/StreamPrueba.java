@@ -2,6 +2,7 @@ package stream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Class StreamPrueba.
@@ -15,12 +16,28 @@ import java.util.List;
  */
 public class StreamPrueba {
 	
+	/** Lista de Usuarios. */
 	private static List<User> users;
 	
+	/**
+	 * Método main.
+	 * @param mac
+	 */
 	public static void main(String... mac) {
+		setUpUser();
+		Stream<List<User>> stream = Stream.of(users); // Se crea un Stream.
+		users.stream(); // Otra forma de crear un Stream.
 		
+		users.stream().forEach((user) -> user.setNombre(user.getNombre() + " Apellido"));
+		
+		imprimirLista();
+		
+		stream.close();
 	}
 	
+	/**
+	 * Se unicializa la lista y se cargan valores.
+	 */
 	private static void setUpUser() {
 		users = new ArrayList<>();
 		users.add(new User(1, "Jose"));
@@ -29,6 +46,10 @@ public class StreamPrueba {
 		users.add(new User(4, "Pacheco"));
 		users.add(new User(5, "Felipe"));
 		users.add(new User(6, "Margarita"));
+	}
+	
+	private static void imprimirLista() {
+		users.stream().forEach((user) -> System.out.println(user.getId() + " " + user.getNombre()));
 	}
 
 }
