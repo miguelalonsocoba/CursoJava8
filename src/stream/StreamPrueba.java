@@ -67,6 +67,14 @@ public class StreamPrueba {
 				.collect(Collectors.toList());
 		nombreUnicaLista.stream().forEach((nombre) -> System.out.println(String.format("Nombre: %s", nombre)));
 		
+		// Peek
+		System.out.println("-----------------------PEEK---------------------");
+		setUpUser();
+		List<User> users2 = users.stream()
+				.peek((usuario) -> usuario.setNombre(usuario.getNombre() + " Apellido")).collect(Collectors.toList());
+		
+		users2.stream().forEach((us) -> System.out.println(String.format("Nombre: %s", us.getNombre())));
+		
 
 		stream.close();
 	}
