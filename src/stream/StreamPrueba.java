@@ -83,10 +83,15 @@ public class StreamPrueba {
 				.count();
 		System.out.println(String.format("Número filtrado: %s", numeroFiltrado));
 		
-		Long n = users.stream().count();
-		System.out.println(n);
+		// Skip and Limit.
+		System.out.println("-----------------------Skip and Limit-----------------------");
+		String[] abc  = {"a", "b", "c", "d", "f", "g", "h", "i", "j"};
+		List<String> abcFiltrado = Arrays.stream(abc)
+				.skip(2)
+				.limit(4)
+				.collect(Collectors.toList());
+		abcFiltrado.stream().forEach((e) -> System.out.println(String.format("ABC Fitrado: %s", e)));
 		
-
 		stream.close();
 	}
 
