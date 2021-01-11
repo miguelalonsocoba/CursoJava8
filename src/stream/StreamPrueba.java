@@ -2,6 +2,7 @@ package stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -91,6 +92,14 @@ public class StreamPrueba {
 				.limit(4)
 				.collect(Collectors.toList());
 		abcFiltrado.stream().forEach((e) -> System.out.println(String.format("ABC Fitrado: %s", e)));
+		
+		// Sorted
+		System.out.println("-----------------------------Sorted-----------------------------");
+		setUpUser();
+		List<User> usersSorted = users.stream()
+		.sorted(Comparator.comparing(User::getNombre))
+		.collect(Collectors.toList());
+		usersSorted.stream().forEach((e) -> System.out.println(String.format("Nombre: %s", e.getNombre())));
 		
 		stream.close();
 	}
