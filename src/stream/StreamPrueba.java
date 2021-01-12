@@ -114,6 +114,14 @@ public class StreamPrueba {
 				.orElse(null);
 		System.out.println(String.format("Usuario maximo: %s", userMax));
 		
+		// Distinct.
+		System.out.println("----------------------Distinct----------------------");
+		String[] abc1  = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "a", "c"};
+		List<String> abcFilter1 = Arrays.stream(abc1)
+				.distinct().collect(Collectors.toList());
+		abcFilter1.stream().forEach((e) -> System.out.println(String.format("Elemento: %s", e)));
+		
+		
 		stream.close();
 	}
 
