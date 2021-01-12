@@ -101,6 +101,19 @@ public class StreamPrueba {
 		.collect(Collectors.toList());
 		usersSorted.stream().forEach((e) -> System.out.println(String.format("Nombre: %s", e.getNombre())));
 		
+		// Min y Max.
+		System.out.println("--------------------Min y Max-----------------");
+		setUpUser();
+		User userMin = users.stream()
+				.min(Comparator.comparing(User::getId))
+				.orElse(null);
+		System.out.println(String.format("Usuario minimo: %s", userMin));
+		
+		User userMax = users.stream()
+				.max(Comparator.comparing(User::getId))
+				.orElse(null);
+		System.out.println(String.format("Usuario maximo: %s", userMax));
+		
 		stream.close();
 	}
 
