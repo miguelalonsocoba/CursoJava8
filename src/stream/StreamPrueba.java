@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -120,6 +121,22 @@ public class StreamPrueba {
 
 		Boolean noneMatch = numberList.stream().noneMatch((e) -> e > 4000);
 		System.out.println(String.format("NoneMatch Value; %s", noneMatch));
+		
+		// Sum Avarege range.
+		System.out.println("-----------------Sum Avarege range--------------------");
+		setUpUser();
+		
+		double result = users.stream()
+				.mapToInt(User::getId)
+				.average()
+				.orElse(0);
+		System.out.println(String.format("Avarege (Media): %s", result));
+		
+		result = users.stream()
+				.mapToInt(User::getId)
+				.sum();
+		System.out.println(String.format("Suma: %s", result));
+		System.out.println(IntStream.range(0, 100).sum());
 
 		stream.close();
 	}
