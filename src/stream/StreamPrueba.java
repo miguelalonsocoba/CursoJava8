@@ -123,7 +123,7 @@ public class StreamPrueba {
 		System.out.println(String.format("NoneMatch Value; %s", noneMatch));
 		
 		// Sum Avarege range.
-		System.out.println("-----------------Sum Avarege range--------------------");
+		System.out.println("-----------------Sum Avereage range--------------------");
 		setUpUser();
 		
 		double result = users.stream()
@@ -137,6 +137,15 @@ public class StreamPrueba {
 				.sum();
 		System.out.println(String.format("Suma: %s", result));
 		System.out.println(IntStream.range(0, 100).sum());
+		
+		// Reduce
+		System.out.println("-------------------------Reduce--------------------------");
+		setUpUser();
+		int suma = users.stream()
+				.mapToInt(User::getId)
+				.reduce(0, Integer::sum);
+		System.out.println(String.format("Valor de la Suma: %s", suma));
+				
 
 		stream.close();
 	}
