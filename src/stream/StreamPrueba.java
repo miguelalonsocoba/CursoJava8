@@ -145,6 +145,15 @@ public class StreamPrueba {
 				.mapToInt(User::getId)
 				.reduce(0, Integer::sum);
 		System.out.println(String.format("Valor de la Suma: %s", suma));
+		
+		// Joining
+		System.out.println("------------------------Joining---------------------------");
+		setUpUser();
+		String names = users.stream()
+				.map(User::getNombre)
+				.collect(Collectors.joining(" - "))
+				.toString();
+		System.out.println(String.format("Nombre> %s", names));
 				
 
 		stream.close();
