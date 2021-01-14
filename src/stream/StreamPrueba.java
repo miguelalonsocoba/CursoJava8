@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -154,6 +155,14 @@ public class StreamPrueba {
 				.collect(Collectors.joining(" - "))
 				.toString();
 		System.out.println(String.format("Nombre> %s", names));
+		
+		// toSet
+		System.out.println("--------------------------toSet-----------------");
+		setUpUser();
+		Set<String> setNames = users.stream()
+				.map(User::getNombre)
+				.collect(Collectors.toSet());
+		setNames.stream().forEach((e) -> System.out.println(String.format("Nombre: %s", e)));
 				
 
 		stream.close();
