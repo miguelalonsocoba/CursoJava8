@@ -3,6 +3,7 @@ package stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -163,6 +164,22 @@ public class StreamPrueba {
 				.map(User::getNombre)
 				.collect(Collectors.toSet());
 		setNames.stream().forEach((e) -> System.out.println(String.format("Nombre: %s", e)));
+		
+		// sumamrizingDouble
+		System.out.println("----------------SummarizingDouble------------");
+		setUpUser();
+		DoubleSummaryStatistics statistics = users.stream()
+				.collect(Collectors.summarizingDouble(User::getId));
+		System.out.println("Average: " + statistics.getAverage() + " Valor Maximo: " + statistics.getMax() + 
+				" Valor Minimo: " + statistics.getMin() + " Número de elementos: " + statistics.getCount()
+				 + " Suma: " + statistics.getSum());
+		
+		DoubleSummaryStatistics statistics1 = users.stream()
+				.mapToDouble(User::getId)
+				.summaryStatistics();
+		System.out.println("Average: " + statistics1.getAverage() + " Valor Maximo: " + statistics1.getMax() + 
+				" Valor Minimo: " + statistics1.getMin() + " Número de elementos: " + statistics1.getCount()
+				 + " Suma: " + statistics1.getSum());
 				
 
 		stream.close();
