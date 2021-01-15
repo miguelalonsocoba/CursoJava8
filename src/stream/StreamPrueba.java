@@ -124,73 +124,70 @@ public class StreamPrueba {
 
 		Boolean noneMatch = numberList.stream().noneMatch((e) -> e > 4000);
 		System.out.println(String.format("NoneMatch Value; %s", noneMatch));
-		
+
 		// Sum Avarege range.
 		System.out.println("-----------------Sum Avereage range--------------------");
 		setUpUser();
-		
-		double result = users.stream()
-				.mapToInt(User::getId)
-				.average()
-				.orElse(0);
+
+		double result = users.stream().mapToInt(User::getId).average().orElse(0);
 		System.out.println(String.format("Avarege (Media): %s", result));
-		
-		result = users.stream()
-				.mapToInt(User::getId)
-				.sum();
+
+		result = users.stream().mapToInt(User::getId).sum();
 		System.out.println(String.format("Suma: %s", result));
 		System.out.println(IntStream.range(0, 100).sum());
-		
+
 		// Reduce
 		System.out.println("-------------------------Reduce--------------------------");
 		setUpUser();
-		int suma = users.stream()
-				.mapToInt(User::getId)
-				.reduce(0, Integer::sum);
+		int suma = users.stream().mapToInt(User::getId).reduce(0, Integer::sum);
 		System.out.println(String.format("Valor de la Suma: %s", suma));
-		
+
 		// Joining
 		System.out.println("------------------------Joining---------------------------");
 		setUpUser();
-		String names = users.stream()
-				.map(User::getNombre)
-				.collect(Collectors.joining(" - "))
-				.toString();
+		String names = users.stream().map(User::getNombre).collect(Collectors.joining(" - ")).toString();
 		System.out.println(String.format("Nombre> %s", names));
-		
+
 		// toSet
 		System.out.println("--------------------------toSet-----------------");
 		setUpUser();
-		Set<String> setNames = users.stream()
-				.map(User::getNombre)
-				.collect(Collectors.toSet());
+		Set<String> setNames = users.stream().map(User::getNombre).collect(Collectors.toSet());
 		setNames.stream().forEach((e) -> System.out.println(String.format("Nombre: %s", e)));
-		
+
 		// sumamrizingDouble
 		System.out.println("----------------SummarizingDouble------------");
 		setUpUser();
-		DoubleSummaryStatistics statistics = users.stream()
-				.collect(Collectors.summarizingDouble(User::getId));
-		System.out.println("Average: " + statistics.getAverage() + " Valor Maximo: " + statistics.getMax() + 
-				" Valor Minimo: " + statistics.getMin() + " Número de elementos: " + statistics.getCount()
-				 + " Suma: " + statistics.getSum());
-		
-		DoubleSummaryStatistics statistics1 = users.stream()
-				.mapToDouble(User::getId)
-				.summaryStatistics();
-		System.out.println("Average: " + statistics1.getAverage() + " Valor Maximo: " + statistics1.getMax() + 
-				" Valor Minimo: " + statistics1.getMin() + " Número de elementos: " + statistics1.getCount()
-				 + " Suma: " + statistics1.getSum());
-		
+		DoubleSummaryStatistics statistics = users.stream().collect(Collectors.summarizingDouble(User::getId));
+		System.out.println("Average: " + statistics.getAverage() + " Valor Maximo: " + statistics.getMax()
+				+ " Valor Minimo: " + statistics.getMin() + " Número de elementos: " + statistics.getCount() + " Suma: "
+				+ statistics.getSum());
+
+		DoubleSummaryStatistics statistics1 = users.stream().mapToDouble(User::getId).summaryStatistics();
+		System.out.println("Average: " + statistics1.getAverage() + " Valor Maximo: " + statistics1.getMax()
+				+ " Valor Minimo: " + statistics1.getMin() + " Número de elementos: " + statistics1.getCount()
+				+ " Suma: " + statistics1.getSum());
+
 		// partitioningBy
 		System.out.println("-------------------------partitioningBy-----------------------------");
 		setUpUser();
 		List<Integer> numeros = Arrays.asList(5, 7, 34, 56, 67, 94);
-		Map<Boolean, List<Integer>> esMayor = numeros.stream()
-				.collect(Collectors.partitioningBy((e) -> e > 10));
+		Map<Boolean, List<Integer>> esMayor = numeros.stream().collect(Collectors.partitioningBy((e) -> e > 10));
 		esMayor.get(true).stream().forEach((e) -> System.out.println(String.format("Numero mayor: %s", e)));
 		esMayor.get(false).stream().forEach((e) -> System.out.println(String.format("Numero menor: %s", e)));
-				
+
+		// gruopingBy
+		System.out.println("---------------groupingBy---------------");
+		setUpUser();
+		Map<Character, List<User>> grupoAlfabeticoMap = users.stream()
+				.collect(Collectors.groupingBy((e) -> new Character(e.getNombre().charAt(0))));
+		grupoAlfabeticoMap.get('M').stream()
+				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
+		grupoAlfabeticoMap.get('J').stream()
+				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
+		grupoAlfabeticoMap.get('P').stream()
+				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
+		grupoAlfabeticoMap.get('F').stream()
+				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
 
 		stream.close();
 	}
