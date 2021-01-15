@@ -188,6 +188,13 @@ public class StreamPrueba {
 				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
 		grupoAlfabeticoMap.get('F').stream()
 				.forEach((e) -> System.out.println(String.format("Value: %s", e.getNombre())));
+		
+		// mapping
+		System.out.println("----------------mapping---------------------");
+		setUpUser();
+		List<String> personas = users.stream()
+				.collect(Collectors.mapping(User::getNombre, Collectors.toList()));
+		personas.stream().forEach((e) -> System.out.println(String.format("Persona: %s", e)));
 
 		stream.close();
 	}
