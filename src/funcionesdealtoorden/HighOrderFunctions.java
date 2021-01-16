@@ -1,6 +1,11 @@
 package funcionesdealtoorden;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Class HighOrderFunctions.
@@ -48,6 +53,25 @@ public class HighOrderFunctions implements SumarInterfaz {
 		 */
 		Function<String, String> covertirAMayusculas = (e) -> e.toUpperCase();
 		hof.imprimirMayuscula(covertirAMayusculas, "miguel");
+		
+		// -------------Interfaz Funcional BiFunction<T,U,R>-------------
+		/*
+		 * interface BiFunction<T,U,R>
+		 * {
+		 * 		R apply (T t, U u)
+		 * }
+		 */
+		//---------------Interfaz Funcional Predicate<T>-----------------------
+		/*
+		 * interface Predicate<T>
+		 * {
+		 * 		Boolean test(T t)
+		 * }
+		 */
+		List<Integer> numeros = Arrays.asList(6, 23, -5, 4, 68, -9, -67, 46);
+		BiFunction<List<Integer>, Predicate<Integer>, List<Integer>> filtrar;
+		filtrar = (lista, predicado) -> lista.stream().filter((e) -> predicado.test(e)).collect(Collectors.toList());
+		System.out.println(filtrar.apply(numeros, (e) -> e > 0));
 		
 	}
 
