@@ -5,6 +5,7 @@ package funcionesdealtoorden;
  * @author Miguel
  *
  */
+@FunctionalInterface
 public interface SumarInterfaz {
 	
 	/**

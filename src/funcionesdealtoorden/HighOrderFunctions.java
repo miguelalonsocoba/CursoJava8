@@ -32,6 +32,10 @@ public class HighOrderFunctions implements SumarInterfaz {
 		};
 		System.out.println(String.format("Valor de la suma de la función de alto orden: %s",
 				hof.sumarHighOrderFunction(sumarInterfaz, 5, 6)));
+		
+		SumarInterfaz sumarInterfaz2 = (a, b) -> a + b;
+		System.out.println(String.format("Valor de la suma de la función de alto orden: %s",
+				hof.sumarHighOrderFunction(sumarInterfaz2, 5, 5)));
 	}
 
 	public Integer suma(int a, int b) {
