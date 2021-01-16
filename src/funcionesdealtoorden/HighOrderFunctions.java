@@ -1,8 +1,10 @@
 package funcionesdealtoorden;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -73,6 +75,29 @@ public class HighOrderFunctions implements SumarInterfaz {
 		filtrar = (lista, predicado) -> lista.stream().filter((e) -> predicado.test(e)).collect(Collectors.toList());
 		System.out.println(filtrar.apply(numeros, (e) -> e > 0));
 		
+		// -----------------Interfaz Funcional Consumer<T>---------------
+		/*
+		 * interface Consumer<T>
+		 * {
+		 * 		void accept(T t)
+		 * }
+		 */
+		List<String> nombres = new ArrayList<>();
+		nombres.add("Alberto");
+		nombres.add("Maria");
+		nombres.add("Paco");
+		
+		hof.filtrar(nombres, (e) -> System.out.println(e), 6);
+		
+		
+	}
+	
+	public void filtrar(List<String> lista, Consumer<String> consumer, int maximoCaracteres) {
+		lista.stream().filter(logicaPredicado(maximoCaracteres)).forEach(consumer);
+	}
+
+	private Predicate<String> logicaPredicado(int maximoCaracteres) {
+		return (e) -> e.length() < maximoCaracteres;
 	}
 
 	public Integer suma(int a, int b) {
