@@ -195,8 +195,31 @@ public class StreamPrueba {
 		List<String> personas = users.stream()
 				.collect(Collectors.mapping(User::getNombre, Collectors.toList()));
 		personas.stream().forEach((e) -> System.out.println(String.format("Persona: %s", e)));
+		
+		// stream paralelo
+		System.out.println("--------------------Stream Paralelo-----------------------");
+		setUpUser();
+		Long tiempo1 = System.currentTimeMillis();
+		listaStrings.stream().forEach((e) -> convertirAMayusculas(e));
+		Long tiempo2 = System.currentTimeMillis();
+		System.out.println("Normal: " + (tiempo1 - tiempo2));
+		
+		tiempo1 = System.currentTimeMillis();
+		listaStrings.parallelStream().forEach((e) -> convertirAMayusculas(e));
+		tiempo2 = System.currentTimeMillis();
+		System.out.println("Paralelo: " + (tiempo1 - tiempo2));
 
 		stream.close();
+	}
+	
+	private static String convertirAMayusculas(String nombre) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return nombre.toUpperCase();
 	}
 
 	/**
