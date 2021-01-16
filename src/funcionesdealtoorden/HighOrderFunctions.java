@@ -1,5 +1,7 @@
 package funcionesdealtoorden;
 
+import java.util.function.Function;
+
 /**
  * Class HighOrderFunctions.
  * 
@@ -36,6 +38,17 @@ public class HighOrderFunctions implements SumarInterfaz {
 		SumarInterfaz sumarInterfaz2 = (a, b) -> a + b;
 		System.out.println(String.format("Valor de la suma de la función de alto orden: %s",
 				hof.sumarHighOrderFunction(sumarInterfaz2, 5, 5)));
+		
+		// -----------------Interfaz Funcional Function<T, R>---------------
+		/*
+		 * interface Function<T t, R r>
+		 * {
+		 * 	R apply(T t)
+		 * }
+		 */
+		Function<String, String> covertirAMayusculas = (e) -> e.toUpperCase();
+		hof.imprimirMayuscula(covertirAMayusculas, "miguel");
+		
 	}
 
 	public Integer suma(int a, int b) {
@@ -50,6 +63,10 @@ public class HighOrderFunctions implements SumarInterfaz {
 
 	public Integer sumarHighOrderFunction(SumarInterfaz sumar, int a, int b) {
 		return sumar.apply(a, b);
+	}
+	
+	public void imprimirMayuscula(Function<String, String> function, String nombre ) {
+		System.out.println("Mayusculas: " + function.apply(nombre));
 	}
 
 }
